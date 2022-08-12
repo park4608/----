@@ -1,7 +1,7 @@
 //DOM
 const playground = document.querySelector('.playground > ul');
 
-//Setting
+// Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
