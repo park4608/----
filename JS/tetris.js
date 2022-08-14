@@ -12,7 +12,7 @@ const GAME_COLS = 10;
 
 //variables
 let score = 0;
-let duration = 500;
+let duration = 250;
 let downInterval;
 let tempMovingItem;
 
@@ -65,12 +65,12 @@ function renderBlocks(moveType = '') {
         showGameoverText();
       }
       setTimeout(() => {
-        renderBlocks();
         if (moveType === 'top') {
           console.log('seizeBlock');
           seizeBlock();
         }
-      }, 0);
+        renderBlocks();
+      }, 100);
     }
   });
   movingItem.left = left;
@@ -110,6 +110,7 @@ function generateNewBlock() {
   clearInterval(downInterval);
   downInterval = setInterval(() => {
     moveBlock('top', 1);
+    console.log('move');
   }, duration);
   console.log('generate');
   const blockArray = Object.entries(BLOCKS);
@@ -169,12 +170,14 @@ document.addEventListener('keydown', (e) => {
       break;
     case 32:
       dropBlock();
+      break;
     default:
       break;
   }
 });
 
 restartButton.addEventListener('click', () => {
-  playground.innterHTML = '';
+  playground.innerHTML = '';
+  gameText.style.display = ' none';
   init();
 });
